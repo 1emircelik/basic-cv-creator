@@ -11,9 +11,6 @@ Node.js / npm gerektirmez.
 1) Bu klasörü aç: `cv-builder/`
 2) `index.html` dosyasını tarayıcıda açın.
 
-## İnternetten (başkaları da kullansın)
-En kolay yol: **GitHub Pages** ile statik site olarak yayınlamak.
-
 Ayrıntı: `README_DEPLOY.md` dosyasına bak.
 
 ## PDF Alma
