@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ATS Uyumlu CV Oluşturucu (PDF İndir)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <h1>CV Oluşturucu (ATS Uyumlu)</h1>
+      <p>Emoji yok, tek kolon, düz ve okunaklı yazı tipi. PDF olarak indir.</p>
+    </div>
+  </header>
+
+  <main class="wrap grid">
+    <section class="panel">
+      <h2>CV Bilgileri</h2>
+      <form id="cvForm" autocomplete="off">
+        <div class="row">
+          <label>
+            İsim Soyisim
+            <input name="fullName" type="text" placeholder="Örn: Emre Yılmaz" />
+          </label>
+          <label>
+            E-posta
+            <input name="email" type="email" placeholder="ornek@eposta.com" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Telefon
+            <input name="phone" type="tel" placeholder="0 5xx xxx xx xx" />
+          </label>
+          <label>
+            Şehir / Ülke
+            <input name="location" type="text" placeholder="İstanbul, TR" />
+          </label>
+        </div>
+
+        <label>
+          LinkedIn (isteğe bağlı)
+          <input name="linkedin" type="url" placeholder="https://www.linkedin.com/in/kullanici" />
+        </label>
+
+        <label>
+          GitHub / Portfolio (isteğe bağlı)
+          <input name="portfolio" type="url" placeholder="https://github.com/kullanici" />
+        </label>
+
+        <label>
+          Profil Özeti
+          <textarea name="summary" rows="5" placeholder="Kısa ve net özet. ATS için 3-5 cümle yeterlidir."></textarea>
+        </label>
+
+        <div class="sectionTitle">Beceri Alanları (noktalı liste)</div>
+        <label>
+          Beceri 1..N (virgülle ayır)
+          <textarea name="skills" rows="4" placeholder="JavaScript, React, Node.js, SQL, REST API"></textarea>
+        </label>
+
+        <div class="sectionTitle">İş Deneyimi</div>
+        <div id="experienceList" class="listWrap"></div>
+        <button type="button" id="addExperience" class="btn secondary">İş deneyimi ekle</button>
+
+        <div class="sectionTitle">Eğitim</div>
+        <div id="educationList" class="listWrap"></div>
+        <button type="button" id="addEducation" class="btn secondary">Eğitim ekle</button>
+
+        <div class="sectionTitle">Sertifikalar (isteğe bağlı)</div>
+        <div id="certList" class="listWrap"></div>
+        <button type="button" id="addCert" class="btn secondary">Sertifika ekle</button>
+
+        <div class="sectionTitle">Projeler (isteğe bağlı)</div>
+        <div id="projectList" class="listWrap"></div>
+        <button type="button" id="addProject" class="btn secondary">Proje ekle</button>
+
+        <div class="sectionTitle">Dil Bilgisi (isteğe bağlı)</div>
+        <label>
+          Dil 1..N (virgülle ayır)
+          <textarea name="languages" rows="2" placeholder="Türkçe (Ana dil), İngilizce (B2)"></textarea>
+        </label>
+
+        <div class="sectionTitle">Hobiler (isteğe bağlı)</div>
+        <label>
+          Hobiler (virgülle ayır)
+          <textarea name="hobbies" rows="2" placeholder="Spor, Okuma, Teknoloji"></textarea>
+        </label>
+
+        <div class="actions">
+          <button type="button" id="fillSample" class="btn">Örnek doldur</button>
+          <button type="button" id="resetBtn" class="btn ghost">Temizle</button>
+          <button type="button" id="downloadPdf" class="btn primary">PDF İndir</button>
+        </div>
+
+        <p class="hint">Not: PDF üretimi tamamen tarayıcıda yapılır. Emoji veya özel semboller eklemeden düz metin kullan.</p>
+      </form>
+    </section>
+
+    <section class="panel previewPanel">
+      <div class="previewHeader">
+        <h2>PDF Önizleme</h2>
+        <p class="sub">Bu görünüm PDF ile birebir benzer olacaktır.</p>
+      </div>
+
+      <div class="paper" id="paper">
+        <div class="paperInner" id="paperInner">
+          <div class="cvHeader">
+            <div class="cvName" data-out="fullName"></div>
+            <div class="cvContact" data-out="contactLine"></div>
+          </div>
+
+          <div class="cvSection" id="secSummary">
+            <div class="secTitle">Özet</div>
+            <div class="secBody" data-out="summary"></div>
+          </div>
+
+          <div class="cvSection" id="secSkills">
+            <div class="secTitle">Beceriler</div>
+            <div class="secBody" data-out="skills"></div>
+          </div>
+
+          <div class="cvSection" id="secExperience">
+            <div class="secTitle">İş Deneyimi</div>
+            <div class="secBody" data-out="experience"></div>
+          </div>
+
+          <div class="cvSection" id="secEducation">
+            <div class="secTitle">Eğitim</div>
+            <div class="secBody" data-out="education"></div>
+          </div>
+
+          <div class="cvSection" id="secCerts">
+            <div class="secTitle">Sertifikalar</div>
+            <div class="secBody" data-out="certificates"></div>
+          </div>
+
+          <div class="cvSection" id="secProjects">
+            <div class="secTitle">Projeler</div>
+            <div class="secBody" data-out="projects"></div>
+          </div>
+
+          <div class="cvSection" id="secLanguages">
+            <div class="secTitle">Diller</div>
+            <div class="secBody" data-out="languages"></div>
+          </div>
+
+          <div class="cvSection" id="secHobbies">
+            <div class="secTitle">Hobiler</div>
+            <div class="secBody" data-out="hobbies"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="printNote">
+        PDF indirmek için “PDF İndir” butonunu kullan. (İstersen sistem yazdırma ayarından “PDF olarak kaydet” de kullanabilirsin.)
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
